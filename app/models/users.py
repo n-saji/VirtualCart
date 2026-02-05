@@ -1,24 +1,24 @@
-from sqlalchemy import UUID, Column, TIMESTAMP, String, Enum, Boolean
+from sqlalchemy import  Column, String, Enum, Boolean, func, DateTime
 from sqlalchemy.ext.declarative import declarative_base
+import enum
+from sqlalchemy.dialects.postgresql import UUID
+import uuid
 
 Base = declarative_base()
 
-class roles(Enum):
-    SELLER = 1
-    USER = 2
-    BOTH = 3
+class UserRole(str, enum.Enum):
+    seller = "seller"
+    buyer = "buyer"
+    both = "both"
 
 class User(Base):
     __tablename__ = 'users'
 
-    id = Column(UUID, primary_key=True, nullable=False)
+    id = Column(UUID(as_uuid=True), primary_key=True, nullable=False, default=uuid.uuid4)
     full_name = Column(String(50), unique=True, nullable=False)
-    email = Column(String(100), unique=True, nullable=False)
+    email = Column(String(100), unique=True, nullable=False, index=True)
     password_hash = Column(String(128), nullable=False)
-    role = Column(Enum(roles), nullable=False, default=roles.USER)
+    role = Column(Enum(UserRole), nullable=False, default=UserRole.buyer)
     is_active = Column(Boolean, nullable=False, default=True)
-    created_at = Column(TIMESTAMP, nullable=False)
-    updated_at = Column(TIMESTAMP, nullable=False)
-
-    def __repr__(self):
-        return f"<User(full_name='{self.full_name}', email='{self.email}')>"
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now(), server_default=func.now())

@@ -1,0 +1,88 @@
+marketflow/                     # project root
+│
+├── app/
+│   ├── main.py                  # FastAPI app entry point
+│   ├── core/                    # core configuration & security
+│   │   ├── config.py            # env vars, settings
+│   │   ├── security.py          # JWT, password hashing
+│   │   └── dependencies.py      # auth & common deps
+│   │
+│   ├── db/                      # database layer
+│   │   ├── session.py           # DB session creation
+│   │   ├── base.py              # SQLAlchemy Base
+│   │   └── init_db.py           # seed / init scripts
+│   │
+│   ├── models/                  # SQLAlchemy models
+│   │   ├── user.py
+│   │   ├── product.py
+│   │   ├── category.py
+│   │   ├── cart.py
+│   │   ├── order.py
+│   │   ├── chat.py
+│   │   ├── message.py
+│   │   └── notification.py
+│   │
+│   ├── schemas/                 # Pydantic schemas
+│   │   ├── user.py
+│   │   ├── product.py
+│   │   ├── cart.py
+│   │   ├── order.py
+│   │   ├── chat.py
+│   │   └── notification.py
+│   │
+│   ├── crud/                    # DB operations
+│   │   ├── user.py
+│   │   ├── product.py
+│   │   ├── cart.py
+│   │   ├── order.py
+│   │   └── chat.py
+│   │
+│   ├── api/                     # API layer
+│   │   ├── deps.py              # API dependencies
+│   │   ├── v1/
+│   │   │   ├── router.py        # API router
+│   │   │   ├── auth.py
+│   │   │   ├── users.py
+│   │   │   ├── products.py
+│   │   │   ├── carts.py
+│   │   │   ├── orders.py
+│   │   │   └── analytics.py
+│   │
+│   ├── websocket/               # real-time layer
+│   │   ├── manager.py           # connection manager
+│   │   ├── chat.py              # buyer–seller chat
+│   │   ├── inventory.py         # stock updates
+│   │   └── notifications.py
+│   │
+│   ├── services/                # business logic
+│   │   ├── checkout.py          # order transactions
+│   │   ├── inventory.py         # stock logic
+│   │   ├── notification.py
+│   │   └── recommendation.py
+│   │
+│   ├── tasks/                   # background jobs
+│   │   ├── celery_app.py
+│   │   ├── email_tasks.py
+│   │   └── analytics_tasks.py
+│   │
+│   ├── utils/                   # helpers
+│   │   ├── hashing.py
+│   │   ├── validators.py
+│   │   └── constants.py
+│   │
+│   └── tests/                   # tests
+│       ├── test_auth.py
+│       ├── test_products.py
+│       ├── test_orders.py
+│       └── test_websockets.py
+│
+├── alembic/                     # DB migrations
+│   ├── versions/
+│   └── env.py
+│
+├── .env                         # environment variables
+├── requirements.txt
+├── docker-compose.yml
+├── Dockerfile
+├── README.md
+└── pyproject.toml (optional)
