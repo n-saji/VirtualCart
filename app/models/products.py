@@ -4,9 +4,8 @@ from sqlalchemy import (
     DateTime, func, UniqueConstraint
 )
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import declarative_base
+from app.db.base import Base
 
-Base = declarative_base()
 
 class Product(Base):
     __tablename__ = "products"

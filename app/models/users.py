@@ -1,10 +1,9 @@
 from sqlalchemy import  Column, String, Enum, Boolean, func, DateTime
-from sqlalchemy.ext.declarative import declarative_base
+from app.db.base import Base
 import enum
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 
-Base = declarative_base()
 
 class UserRole(str, enum.Enum):
     seller = "seller"
