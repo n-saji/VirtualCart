@@ -1,18 +1,18 @@
 import uuid
 from sqlalchemy import (
-    Column, String, Text, Boolean, Integer, Float,
-    DateTime, func, UniqueConstraint
+    Column, ForeignKey, String, Text, Boolean, Integer, Float,
+    DateTime, func
 )
 from sqlalchemy.dialects.postgresql import UUID
 from app.db.base import Base
 
 
-class Product(Base):
+class Products(Base):
     __tablename__ = "products"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    seller_id = Column(UUID(as_uuid=True), nullable=False, index=True)
-    category_id = Column(UUID(as_uuid=True), nullable=False, index=True)
+    seller_id = Column(ForeignKey("users.id"), index=True)
+    category_id = Column(ForeignKey("categories.id"), index=True)
 
     title = Column(String(50), nullable=False)
     description = Column(Text, nullable=True)

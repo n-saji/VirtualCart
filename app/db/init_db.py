@@ -1,8 +1,7 @@
 from app.db.base import Base
 from app.db.session import engine
+import app.models
 
-from app.models.users import User
-from app.models.products import Product
 
 # Add other model imports here
 
