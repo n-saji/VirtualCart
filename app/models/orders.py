@@ -21,5 +21,5 @@ class Orders(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, nullable=False, default=uuid.uuid4)
     buyer_id = Column(UUID(as_uuid=True), nullable=False, default=uuid.uuid4)
     total_amount = Column(Float, nullable=False, default = 0.0)
-    status = Column(Enum(OrderStatus), nullable=False, default=OrderStatus.active)
+    status = Column(Enum(OrderStatus), nullable=False, default=OrderStatus.pending)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
