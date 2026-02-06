@@ -5,6 +5,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects.postgresql import UUID
 from app.db.base import Base
+from sqlalchemy.orm import Mapped, relationship
 
 
 class Products(Base):
@@ -23,4 +24,6 @@ class Products(Base):
 
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
     updated_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
+
+    seller: Mapped["User"] = relationship("User", back_populates="products")
 

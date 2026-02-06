@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, Enum, Boolean, DateTime, func, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 
 from app.db.base import Base
+from sqlalchemy.orm import Mapped, relationship
 
 
 class NotificationsType(str, enum.Enum):
@@ -23,3 +24,4 @@ class Notifications(Base):
     is_read = Column(Boolean, nullable=False, default=False)
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
     updated_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
+    user: Mapped["User"] = relationship("User", back_populates="notifications")

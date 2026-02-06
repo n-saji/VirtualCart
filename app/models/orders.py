@@ -5,6 +5,7 @@ from sqlalchemy import Column, DateTime, Enum, func, Float, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 
 from app.db.base import Base
+from sqlalchemy.orm import Mapped, relationship
 
 
 class OrderStatus(str, enum.Enum):
@@ -24,3 +25,4 @@ class Orders(Base):
     status = Column(Enum(OrderStatus), nullable=False, default=OrderStatus.pending)
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
     updated_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
+    buyer: Mapped["User"] = relationship("User", back_populates="orders")

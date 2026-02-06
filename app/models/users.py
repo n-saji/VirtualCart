@@ -4,9 +4,7 @@ import enum
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from sqlalchemy.orm import relationship,mapped_column,Mapped
-from app.models.products import Products
 from app.models.notifications import Notifications
-from app.models.orders import Orders
 
 
 class UserRole(str, enum.Enum):
