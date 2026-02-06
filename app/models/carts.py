@@ -12,8 +12,8 @@ class CartStatus(str, enum.Enum):
     check_out = "check_out"
 
 
-class User(Base):
-    __tablename__ = "users"
+class Carts(Base):
+    __tablename__ = "carts"
 
     id = Column(UUID(as_uuid=True), primary_key=True, nullable=False, default=uuid.uuid4)
     cart_id = Column(UUID(as_uuid=True), nullable=False, default=uuid.uuid4)
